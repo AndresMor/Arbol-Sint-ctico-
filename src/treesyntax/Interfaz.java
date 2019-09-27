@@ -89,8 +89,9 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void Btn_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CreateActionPerformed
         // TODO add your handling code here:
+        super.paint(Canvas.getGraphics());
         Arbol tree = new Arbol();
-        String RegularEx = RegEx.infixToPostfix(Text.getText());
+        String RegularEx = RegEx.infixToPostfix(Text.getText() + "#");
         System.out.println(RegularEx);
         char[] datos = RegularEx.toCharArray();
         Nodo raiz = tree.MakeTree(datos);
