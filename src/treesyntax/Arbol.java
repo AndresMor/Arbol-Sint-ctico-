@@ -6,6 +6,7 @@
 package treesyntax;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -18,10 +19,28 @@ public class Arbol {
 
     public Nodo raiz;
     private Integer contHojas;
+    private Set<Integer> siguientePos[];
+    private Set<String> alfabeto;
 
     public Arbol() {
         raiz = null;
         this.contHojas = 0;
+        this.alfabeto = new HashSet<>();
+    }
+
+    public void hacerEstructuraSiguiente(int conHojas) {
+        this.siguientePos = new Set[contHojas];
+        for (int i = 0; i < contHojas; i++) {
+            this.siguientePos[i] = new HashSet<>();
+        }
+    }
+
+    public Integer getContHojas() {
+        return contHojas;
+    }
+
+    public void setContHojas(Integer contHojas) {
+        this.contHojas = contHojas;
     }
 
     public Nodo getRaiz() {
@@ -39,6 +58,14 @@ public class Arbol {
             return true;
         }
         return false;
+    }
+
+    public Set<String> getAlfabeto() {
+        return alfabeto;
+    }
+
+    public void setAlfabeto(Set<String> alfabeto) {
+        this.alfabeto = alfabeto;
     }
 
     public ArrayList<Nodo> getPreordenNodos(Nodo raiz) {
@@ -59,15 +86,6 @@ public class Arbol {
         return ar;
     }
 
-    /*
-    private void hacerAnulable(Nodo nodo, boolean operador){
-        if(operador){
-            
-        }else{
-            
-        }
-    }
-     */
     private void hacerUltimaPos(Nodo nodo, boolean operador) {
         if (operador) {
             Set<Integer> c = null;
@@ -154,6 +172,47 @@ public class Arbol {
         }
     }
 
+    public Set<Integer>[] getSiguientePos() {
+        return siguientePos;
+    }
+
+    public void setSiguientePos(Set<Integer>[] siguientePos) {
+        this.siguientePos = siguientePos;
+    }
+
+    private void hacerSiguientePos(Nodo nodo) {
+        Object ultimaPosN[] = nodo.getUltimaPos().toArray();
+        Set<Integer> primeraPosN = nodo.getPrimeraPos();
+        switch (nodo.getValor()) {
+            case '.':
+                Object ultimaPosC1[] = nodo.getHijo_izq().getUltimaPos().toArray();
+                Set<Integer> primeraPosC2 = nodo.getHijo_der().getPrimeraPos();
+                for (int i = 0; i < ultimaPosC1.length; i++) {
+                    this.siguientePos[(Integer) ultimaPosC1[i] - 1].addAll(primeraPosC2);
+                }
+                break;
+            case '*':
+                for (int i = 0; i < ultimaPosN.length; i++) {
+                    this.siguientePos[(Integer) ultimaPosN[i] - 1].addAll(primeraPosN);
+                }
+                break;
+            case '+':
+                for (int i = 0; i < ultimaPosN.length; i++) {
+                    this.siguientePos[(Integer) ultimaPosN[i] - 1].addAll(primeraPosN);
+                }
+                break;
+        }
+    }
+
+    public void preorden(Nodo nodo) {
+        if (nodo == null) {
+            return;
+        }
+        hacerSiguientePos(nodo);
+        preorden(nodo.getHijo_izq());
+        preorden(nodo.getHijo_der());
+    }
+
     Nodo MakeTree(char[] postfix) {
         Stack<Nodo> st = new Stack();
         Nodo t, t1, t2;
@@ -170,6 +229,7 @@ public class Arbol {
                 if (postfix[i] == '&') {
                     t.anulable = true;
                 }
+                this.alfabeto.add(Character.toString(postfix[i]));
                 hacerPrimeraPos(t, false);
                 hacerUltimaPos(t, false);
             } else // operator 
@@ -194,6 +254,7 @@ public class Arbol {
                 }
                 hacerPrimeraPos(t, true);
                 hacerUltimaPos(t, true);
+                // SiguientePos
                 st.push(t);
             }
         }
@@ -201,8 +262,10 @@ public class Arbol {
         //  only element will be root of expression 
         // tree 
         t = st.peek();
+        this.alfabeto.remove("#");
         st.pop();
 
         return t;
     }
+
 }
