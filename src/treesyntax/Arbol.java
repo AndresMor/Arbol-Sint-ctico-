@@ -7,6 +7,7 @@ package treesyntax;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -21,11 +22,13 @@ public class Arbol {
     private Integer contHojas;
     private Set<Integer> siguientePos[];
     private Set<String> alfabeto;
+    private HashMap<Integer, String> hojas;
 
     public Arbol() {
         raiz = null;
         this.contHojas = 0;
         this.alfabeto = new HashSet<>();
+        this.hojas = new HashMap<>();
     }
 
     public void hacerEstructuraSiguiente(int conHojas) {
@@ -49,6 +52,10 @@ public class Arbol {
 
     public void setRaiz(Nodo raiz) {
         this.raiz = raiz;
+    }
+
+    public HashMap<Integer, String> getHojas() {
+        return hojas;
     }
 
     boolean isOperator(char c) {
@@ -201,6 +208,13 @@ public class Arbol {
                     this.siguientePos[(Integer) ultimaPosN[i] - 1].addAll(primeraPosN);
                 }
                 break;
+            /*
+            case '?':
+                for (int i = 0; i < ultimaPosN.length; i++) {
+                    this.siguientePos[(Integer) ultimaPosN[i] - 1].addAll(primeraPosN);
+                }
+                break;
+            */
         }
     }
 
@@ -228,6 +242,9 @@ public class Arbol {
                 st.push(t);
                 if (postfix[i] == '&') {
                     t.anulable = true;
+                }
+                if (postfix[i] != '&' && postfix[i] != '#') {
+                    this.hojas.put(this.contHojas, Character.toString(postfix[i]));
                 }
                 this.alfabeto.add(Character.toString(postfix[i]));
                 hacerPrimeraPos(t, false);

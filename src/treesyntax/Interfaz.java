@@ -99,11 +99,14 @@ public class Interfaz extends javax.swing.JFrame {
         char[] datos = RegularEx.toCharArray();
         Nodo raiz = tree.MakeTree(datos);
         tree.setRaiz(raiz);
+        // Obtiene hojas
         tree.hacerEstructuraSiguiente(tree.getContHojas());
         tree.preorden(raiz);
         // Imprime alfabeto y siguientepos
         System.out.println(Arrays.toString(tree.getSiguientePos()));
         System.out.println((tree.getAlfabeto()));
+        TranD tranD = new TranD();
+        tranD.hacerTranD(tree);
         Lienzo objLienzo = new Lienzo();
         objLienzo.setObjArbol(tree);
         objLienzo.paint(Canvas.getGraphics());
