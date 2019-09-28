@@ -5,6 +5,9 @@
  */
 package treesyntax;
 
+import java.util.Arrays;
+import java.util.Set;
+
 /**
  *
  * @author Visitante
@@ -96,12 +99,16 @@ public class Interfaz extends javax.swing.JFrame {
         char[] datos = RegularEx.toCharArray();
         Nodo raiz = tree.MakeTree(datos);
         tree.setRaiz(raiz);
+        tree.hacerEstructuraSiguiente(tree.getContHojas());
+        tree.preorden(raiz);
+        // Imprime alfabeto y siguientepos
+        System.out.println(Arrays.toString(tree.getSiguientePos()));
+        System.out.println((tree.getAlfabeto()));
         Lienzo objLienzo = new Lienzo();
         objLienzo.setObjArbol(tree);
         objLienzo.paint(Canvas.getGraphics());
-       // Canvas.add(objLienzo);
+        // Canvas.add(objLienzo);
     }//GEN-LAST:event_Btn_CreateActionPerformed
-
 
     /**
      * @param args the command line arguments

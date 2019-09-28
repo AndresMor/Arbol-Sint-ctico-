@@ -18,6 +18,7 @@ public class Nodo {
     public boolean anulable;
     private Set<Integer> primeraPos;
     private Set<Integer> ultimaPos;
+    private Set<Integer> siguientePos;
     public Nodo hijo_izq, hijo_der;
 
     public Nodo(char valor) {
@@ -45,6 +46,16 @@ public class Nodo {
         return primeraPos;
     }
 
+    public Set<Integer> getSiguientePos() {
+        return siguientePos;
+    }
+
+    public void setSiguientePos(Set<Integer> siguientePos) {
+        this.siguientePos = siguientePos;
+    }
+
+    
+    
     public void setPrimeraPos(Set<Integer> primeraPos) {
         this.primeraPos = primeraPos;
     }
@@ -57,7 +68,6 @@ public class Nodo {
         this.ultimaPos = ultimaPos;
     }
 
-    
     public void setValor(char valor) {
         this.valor = valor;
     }
