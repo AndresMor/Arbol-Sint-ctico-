@@ -53,8 +53,6 @@ public class Nodo {
     public void setSiguientePos(Set<Integer> siguientePos) {
         this.siguientePos = siguientePos;
     }
-
-    
     
     public void setPrimeraPos(Set<Integer> primeraPos) {
         this.primeraPos = primeraPos;
