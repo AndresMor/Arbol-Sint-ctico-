@@ -55,7 +55,8 @@ public class TranD {
         }
     }
 
-    // TranD terminado
+    // Crea estadosD y tranD, estadosD es un HashMap<String, Integer> y
+    // tranD tiene es un HashMap<Integer, HashMap<String, String>>
     public void hacerTranD(Arbol arbol) {
         Set<Set<Integer>> U = new HashSet<>();
         U.add(arbol.getRaiz().getPrimeraPos());

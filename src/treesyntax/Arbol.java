@@ -20,6 +20,7 @@ public class Arbol {
 
     public Nodo raiz;
     private Integer contHojas;
+    private Integer posicionFin;
     private Set<Integer> siguientePos[];
     private Set<String> alfabeto;
     private HashMap<Integer, String> hojas;
@@ -29,6 +30,10 @@ public class Arbol {
         this.contHojas = 0;
         this.alfabeto = new HashSet<>();
         this.hojas = new HashMap<>();
+    }
+
+    public Integer getPosicionFin() {
+        return posicionFin;
     }
 
     public void hacerEstructuraSiguiente(int conHojas) {
@@ -214,7 +219,7 @@ public class Arbol {
                     this.siguientePos[(Integer) ultimaPosN[i] - 1].addAll(primeraPosN);
                 }
                 break;
-            */
+             */
         }
     }
 
@@ -245,6 +250,9 @@ public class Arbol {
                 }
                 if (postfix[i] != '&' && postfix[i] != '#') {
                     this.hojas.put(this.contHojas, Character.toString(postfix[i]));
+                }
+                if (postfix[i] == '#') {
+                    this.posicionFin = this.contHojas;
                 }
                 this.alfabeto.add(Character.toString(postfix[i]));
                 hacerPrimeraPos(t, false);
