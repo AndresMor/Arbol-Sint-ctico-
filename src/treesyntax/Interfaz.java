@@ -106,7 +106,8 @@ public class Interfaz extends javax.swing.JFrame {
         // Imprime alfabeto y siguientepos
         System.out.println(Arrays.toString(tree.getSiguientePos()));
         System.out.println((tree.getAlfabeto()));
-        // Obtiene posicion final para verificar que estados son de finalización
+        // Obtiene posicion final para verificar que estados son de finalización,
+        // esta en clase Arbol
         System.out.println("PosFin: " + tree.getPosicionFin());
         // Obtiene estadosD y tranD, usar tranD.getEstadosD().forEach((k,v)->{}); y lo mismo para
         // tranD.getTranD() para iterar los estadosD y tranD
