@@ -105,6 +105,8 @@ public class Interfaz extends javax.swing.JFrame {
         // Imprime alfabeto y siguientepos
         System.out.println(Arrays.toString(tree.getSiguientePos()));
         System.out.println((tree.getAlfabeto()));
+        // Obtiene estadosD y tranD, usar tranD.getEstadosD().forEach((k,v)->{}); y lo mismo para
+        // tranD.getTranD() para iterar los estadosD y tranD
         TranD tranD = new TranD();
         tranD.hacerTranD(tree);
         Lienzo objLienzo = new Lienzo();

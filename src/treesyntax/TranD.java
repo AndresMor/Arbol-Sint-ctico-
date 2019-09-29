@@ -5,6 +5,7 @@
  */
 package treesyntax;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,32 +55,44 @@ public class TranD {
         }
     }
 
-    // Termianr TransD
+    // TranD terminado
     public void hacerTranD(Arbol arbol) {
-        Set<Integer> U = arbol.getRaiz().getPrimeraPos();
+        Set<Set<Integer>> U = new HashSet<>();
+        U.add(arbol.getRaiz().getPrimeraPos());
         Set<Integer> siguientePos[] = arbol.getSiguientePos();
         Set<String> alfabeto = arbol.getAlfabeto();
-        Integer estado = 0;
-        this.estadosD.put(U.toString(), estado);
+        Integer estado = 1;
+        this.estadosD.put(U.stream().findFirst().get().toString(), estado);
         generarPosiciones(arbol);
         while (true) {
+            if (U.isEmpty()) {
+                break;
+            }
+            HashMap<String, String> contenido = new HashMap<>();
             for (String letra : alfabeto) {
                 Set<Integer> union = new HashSet<>();
-                for (Integer pos : U) {
-                    if (this.conjuntoHojas.get(letra).contains(pos)) {
-                        for (Integer posiciones : siguientePos[pos - 1]) {
-                            union.add(posiciones);
-                        }
-                    }
+                Set<Integer> T = U.stream().findFirst().get();
+                T.stream().filter((pos) -> (this.conjuntoHojas.get(letra).contains(pos))).forEachOrdered((pos) -> {
+                    siguientePos[pos - 1].forEach((posiciones) -> {
+                        union.add(posiciones);
+                    });
+                });
+                if (union.isEmpty()) {
+                    continue;
                 }
-                if (!estadosD.containsKey(union.toString())) {
-                    // Corregir problema estados
+                if (!this.estadosD.containsKey(union.toString())) {
                     estado++;
-                    estadosD.put(union.toString(), estado);
-                    this.tranD.put(estado, (HashMap<String, String>) 
-                            new HashMap<>().put(letra, Integer.toString(estado)));
+                    this.estadosD.put(union.toString(), estado);
+                    contenido.put(letra, Integer.toString(estado));
+                    this.tranD.put(this.estadosD.get(T.toString()), contenido);
+                    U.add(union);
+                } else {
+                    contenido.put(letra, Integer.toString(this.estadosD.get(union.toString())));
+                    this.tranD.put(this.estadosD.get(T.toString()), contenido);
                 }
             }
+            Set<Integer> removerPrimero = U.stream().findFirst().get();
+            U.remove(removerPrimero);
         }
     }
 
