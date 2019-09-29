@@ -18,6 +18,7 @@ public class Interfaz extends javax.swing.JFrame {
      * Creates new form Interfaz
      */
     Lienzo lienzo;
+    TranD trandVerificacion;
 
     public Interfaz() {
         initComponents();
@@ -105,10 +106,13 @@ public class Interfaz extends javax.swing.JFrame {
         // Imprime alfabeto y siguientepos
         System.out.println(Arrays.toString(tree.getSiguientePos()));
         System.out.println((tree.getAlfabeto()));
+        // Obtiene posicion final para verificar que estados son de finalización
+        System.out.println("PosFin: " + tree.getPosicionFin());
         // Obtiene estadosD y tranD, usar tranD.getEstadosD().forEach((k,v)->{}); y lo mismo para
         // tranD.getTranD() para iterar los estadosD y tranD
         TranD tranD = new TranD();
         tranD.hacerTranD(tree);
+        trandVerificacion = tranD;
         Lienzo objLienzo = new Lienzo();
         objLienzo.setObjArbol(tree);
         objLienzo.paint(Canvas.getGraphics());
