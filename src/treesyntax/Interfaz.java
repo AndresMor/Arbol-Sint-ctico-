@@ -114,9 +114,27 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void Btn_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CreateActionPerformed
         // TODO add your handling code here:
-        boolean test = false;
+        boolean test = true;
+        String stringTest = null;
+        // a+bc?aa*b(((d|e)|&)+)?
+        // (a|b(c|d)*)+
+        // (((af|bc)+abb)*fd)+ab
+        switch (4) {
+            case 1:
+                stringTest = "a+bc?aa*b(((d|e)|&)+)?";
+                break;
+            case 2:
+                stringTest = "(a|b(c|d)*)+";
+                break;
+            case 3:
+                stringTest = "(((af|bc)+abb)*fd)+ab";
+                break;
+            case 4:
+                stringTest = "abb(c|d)*ac";
+                break;
+        }
         if (test) {
-            crear("(a|b)*abb");
+            crear(stringTest);
         } else {
             crear(Text.getText());
         }

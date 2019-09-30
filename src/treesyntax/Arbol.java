@@ -243,10 +243,11 @@ public class Arbol {
             // If operand, simply push into stack 
             if (!isOperator(postfix[i])) {
                 t = new Nodo(postfix[i]);
-                this.contHojas++;
                 st.push(t);
                 if (postfix[i] == '&') {
                     t.anulable = true;
+                } else {
+                    this.contHojas++;
                 }
                 if (postfix[i] != '&' && postfix[i] != '#') {
                     this.hojas.put(this.contHojas, Character.toString(postfix[i]));
@@ -288,6 +289,7 @@ public class Arbol {
         // tree 
         t = st.peek();
         this.alfabeto.remove("#");
+        this.alfabeto.remove("&");
         st.pop();
 
         return t;
