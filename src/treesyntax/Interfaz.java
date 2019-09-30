@@ -37,6 +37,8 @@ public class Interfaz extends javax.swing.JFrame {
         Canvas = new javax.swing.JPanel();
         Text = new javax.swing.JTextField();
         Btn_Create = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,10 +53,17 @@ public class Interfaz extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        Btn_Create.setText("Create");
+        Btn_Create.setText("Crear");
         Btn_Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_CreateActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Verificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -65,14 +74,22 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Btn_Create)
-                        .addGap(78, 78, 78))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(Btn_Create, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +102,11 @@ public class Interfaz extends javax.swing.JFrame {
                 .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Btn_Create)
-                .addContainerGap(378, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,9 +114,18 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void Btn_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CreateActionPerformed
         // TODO add your handling code here:
+        boolean test = false;
+        if (test) {
+            crear("(a|b)*abb");
+        } else {
+            crear(Text.getText());
+        }
+    }//GEN-LAST:event_Btn_CreateActionPerformed
+
+    private void crear(String regExp) {
         super.paint(Canvas.getGraphics());
         Arbol tree = new Arbol();
-        String RegularEx = RegEx.infixToPostfix(Text.getText() + "#");
+        String RegularEx = RegEx.infixToPostfix(regExp + "#");
         System.out.println(RegularEx);
         char[] datos = RegularEx.toCharArray();
         Nodo raiz = tree.MakeTree(datos);
@@ -113,12 +143,25 @@ public class Interfaz extends javax.swing.JFrame {
         // tranD.getTranD() para iterar los estadosD y tranD
         TranD tranD = new TranD();
         tranD.hacerTranD(tree);
+        System.out.println("EstadosD:");
+        tranD.getEstadosD().forEach((k, v) -> {
+            System.out.println("k: " + k + "\nv: " + v);
+        });
+        System.out.println("TranD");
+        tranD.getTranD().forEach((k, v) -> {
+            System.out.println("k: " + k + "\nv: " + v);
+        });
+        trandVerificacion = new TranD();
         trandVerificacion = tranD;
         Lienzo objLienzo = new Lienzo();
         objLienzo.setObjArbol(tree);
         objLienzo.paint(Canvas.getGraphics());
         // Canvas.add(objLienzo);
-    }//GEN-LAST:event_Btn_CreateActionPerformed
+    }
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,5 +202,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Create;
     private javax.swing.JPanel Canvas;
     private javax.swing.JTextField Text;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -58,7 +58,7 @@ public class TranD {
     // Crea estadosD y tranD, estadosD es un HashMap<String, Integer> y
     // tranD tiene es un HashMap<Integer, HashMap<String, String>>
     public void hacerTranD(Arbol arbol) {
-        Set<Set<Integer>> U = new HashSet<>();
+        ArrayList<Set<Integer>> U = new ArrayList<>();
         U.add(arbol.getRaiz().getPrimeraPos());
         Set<Integer> siguientePos[] = arbol.getSiguientePos();
         Set<String> alfabeto = arbol.getAlfabeto();
@@ -81,6 +81,7 @@ public class TranD {
                 if (union.isEmpty()) {
                     continue;
                 }
+
                 if (!this.estadosD.containsKey(union.toString())) {
                     estado++;
                     this.estadosD.put(union.toString(), estado);
@@ -88,13 +89,18 @@ public class TranD {
                     this.tranD.put(this.estadosD.get(T.toString()), contenido);
                     U.add(union);
                 } else {
+                    
                     contenido.put(letra, Integer.toString(this.estadosD.get(union.toString())));
                     this.tranD.put(this.estadosD.get(T.toString()), contenido);
                 }
             }
             Set<Integer> removerPrimero = U.stream().findFirst().get();
             U.remove(removerPrimero);
+
         }
+        if (!this.tranD.containsKey(estado)) {
+            this.tranD.put(estado, new HashMap<>());
+        };
     }
 
 }
