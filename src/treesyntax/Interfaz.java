@@ -5,8 +5,12 @@
  */
 package treesyntax;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,7 +22,9 @@ public class Interfaz extends javax.swing.JFrame {
      * Creates new form Interfaz
      */
     Lienzo lienzo;
-    TranD trandVerificacion;
+    TranD trandVerificacion = null;
+    Arbol arbolVerificacion = null;
+    ArrayList<Nodo> Nodos = new ArrayList();
 
     public Interfaz() {
         initComponents();
@@ -37,8 +43,12 @@ public class Interfaz extends javax.swing.JFrame {
         Canvas = new javax.swing.JPanel();
         Text = new javax.swing.JTextField();
         Btn_Create = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JNodos = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JTranD = new javax.swing.JTable();
+        TextCheck = new javax.swing.JTextField();
+        Btn_Check = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,24 +56,44 @@ public class Interfaz extends javax.swing.JFrame {
         Canvas.setLayout(CanvasLayout);
         CanvasLayout.setHorizontalGroup(
             CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 708, Short.MAX_VALUE)
+            .addGap(0, 933, Short.MAX_VALUE)
         );
         CanvasLayout.setVerticalGroup(
             CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 337, Short.MAX_VALUE)
         );
 
-        Btn_Create.setText("Crear");
+        Btn_Create.setText("Create");
         Btn_Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_CreateActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Verificar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        JNodos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nodo", "PPOS", "UPOS", "SGPOS"
+            }
+        ));
+        jScrollPane1.setViewportView(JNodos);
+
+        JTranD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(JTranD);
+
+        Btn_Check.setText("Check");
+        Btn_Check.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Btn_CheckActionPerformed(evt);
             }
         });
 
@@ -72,41 +102,49 @@ public class Interfaz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
+                                .addComponent(Btn_Create)
+                                .addGap(68, 68, 68))
+                            .addComponent(Text, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                            .addComponent(TextCheck)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(Btn_Create, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(74, 74, 74)
+                        .addComponent(Btn_Check)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Btn_Create)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Btn_Create)
+                        .addGap(17, 17, 17)
+                        .addComponent(TextCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Btn_Check))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,36 +152,9 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void Btn_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CreateActionPerformed
         // TODO add your handling code here:
-        boolean test = true;
-        String stringTest = null;
-        // a+bc?aa*b(((d|e)|&)+)?
-        // (a|b(c|d)*)+
-        // (((af|bc)+abb)*fd)+ab
-        switch (4) {
-            case 1:
-                stringTest = "a+bc?aa*b(((d|e)|&)+)?";
-                break;
-            case 2:
-                stringTest = "(a|b(c|d)*)+";
-                break;
-            case 3:
-                stringTest = "(((af|bc)+abb)*fd)+ab";
-                break;
-            case 4:
-                stringTest = "abb(c|d)*ac";
-                break;
-        }
-        if (test) {
-            crear(stringTest);
-        } else {
-            crear(Text.getText());
-        }
-    }//GEN-LAST:event_Btn_CreateActionPerformed
-
-    private void crear(String regExp) {
         super.paint(Canvas.getGraphics());
         Arbol tree = new Arbol();
-        String RegularEx = RegEx.infixToPostfix(regExp + "#");
+        String RegularEx = RegEx.infixToPostfix("(" + Text.getText() + ")#");
         System.out.println(RegularEx);
         char[] datos = RegularEx.toCharArray();
         Nodo raiz = tree.MakeTree(datos);
@@ -151,6 +162,8 @@ public class Interfaz extends javax.swing.JFrame {
         // Obtiene hojas
         tree.hacerEstructuraSiguiente(tree.getContHojas());
         tree.preorden(raiz);
+        arbolVerificacion = new Arbol();
+        arbolVerificacion = tree;
         // Imprime alfabeto y siguientepos
         System.out.println(Arrays.toString(tree.getSiguientePos()));
         System.out.println((tree.getAlfabeto()));
@@ -161,25 +174,127 @@ public class Interfaz extends javax.swing.JFrame {
         // tranD.getTranD() para iterar los estadosD y tranD
         TranD tranD = new TranD();
         tranD.hacerTranD(tree);
-        System.out.println("EstadosD:");
-        tranD.getEstadosD().forEach((k, v) -> {
-            System.out.println("k: " + k + "\nv: " + v);
-        });
-        System.out.println("TranD");
-        tranD.getTranD().forEach((k, v) -> {
-            System.out.println("k: " + k + "\nv: " + v);
-        });
         trandVerificacion = new TranD();
         trandVerificacion = tranD;
+        System.out.println("Estados");
+        tranD.getEstadosD().forEach((k, v) -> System.out.println("Key: " + k + ": Value: " + v));
+        //  System.out.println(tranD.getEstadosD().size());
+        System.out.println("TranD");
+        tranD.getTranD().forEach((k, v) -> System.out.println("Key: " + k + ": Value: " + v));
+
+        DefaultTableModel TranDModel = new DefaultTableModel();
+        TranDModel.addColumn("          ");
+        TranDModel.setRowCount(tranD.getTranD().size());
+        tree.getAlfabeto().forEach((s) -> TranDModel.addColumn(s));
+        TranDModel.addColumn("Posiciones");
+        HashMap<Integer, HashMap<String, String>> map = tranD.getTranD();
+        int i = 0;
+        for (Map.Entry<Integer, HashMap<String, String>> entry : map.entrySet()) {
+            HashMap<String, String> map2 = entry.getValue();
+            TranDModel.setValueAt(getCharForNumber(entry.getKey()), i, 0);
+            for (Map.Entry<String, String> entry2 : map2.entrySet()) {
+                TranDModel.setValueAt(getCharForNumber(Integer.parseInt(entry2.getValue())), entry.getKey() - 1, getPosForLetters(entry2.getKey(), tree.getAlfabeto().toArray()));
+            }
+            i++;
+        }
+        HashMap<String, Integer> mapp = tranD.getEstadosD();
+        for (Map.Entry<String, Integer> entry : mapp.entrySet()) {
+            //System.out.println(entry.getKey()+" = "+entry.getValue());
+            if (entry.getKey().contains("" + tree.getPosicionFin())) {
+                TranDModel.setValueAt(getCharForNumber(entry.getValue()) + "*", entry.getValue() - 1, 0);
+            }
+            TranDModel.setValueAt(entry.getKey(), entry.getValue() - 1, tree.getAlfabeto().size() + 1);
+        }
+        JTranD.setModel(TranDModel);
+        Nodos.removeAll(Nodos);
+        inOrder(raiz);
+        DefaultTableModel NodeModel = new DefaultTableModel();
+        String Header[] = {"Nodo", "PPOS", "UPOS", "SPOS"};
+        NodeModel.setColumnIdentifiers(Header);
+        Set<Integer>[] sgpos = tree.getSiguientePos();
+        int j = 0;
+        for (Nodo n : Nodos) {
+            if (tree.isOperator(n.valor)) {
+                NodeModel.addRow(new Object[]{n.valor, n.getPrimeraPos(), n.getUltimaPos(), " "});
+            } else if (n.valor == '&') {
+                NodeModel.addRow(new Object[]{n.valor, " ", " ", " "});
+            } else {
+                NodeModel.addRow(new Object[]{n.valor, n.getPrimeraPos(), n.getUltimaPos(), sgpos[j]});
+                j++;
+            }
+        }
+
+        JNodos.setModel(NodeModel);
+
         Lienzo objLienzo = new Lienzo();
         objLienzo.setObjArbol(tree);
         objLienzo.paint(Canvas.getGraphics());
-        // Canvas.add(objLienzo);
+        Canvas.add(objLienzo);
+    }//GEN-LAST:event_Btn_CreateActionPerformed
+
+    private void Btn_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CheckActionPerformed
+        // TODO add your handling code here:
+//        String check = TextCheck.getText();
+//        HashMap<Integer, HashMap<String, String>> map = tranD.getTranD();
+//        int i = 0;
+//        for (Map.Entry<Integer, HashMap<String, String>> entry : map.entrySet()) {
+//            HashMap<String, String> map2 = entry.getValue();
+//            for (Map.Entry<String, String> entry2 : map2.entrySet()) {
+//                System.out.println(entry2.getKey() + " = " + entry2.getValue());
+//            }
+//        }
+        String expresion = TextCheck.getText();
+        if (arbolVerificacion == null && trandVerificacion == null) {
+            System.out.println("No puedes verificar algo que no pusiste :)");
+        } else {
+            Integer posFinal = arbolVerificacion.getPosicionFin();
+            HashMap<String, Integer> estadosD = trandVerificacion.getEstadosD();
+            HashMap<Integer, HashMap<String, String>> tranD = trandVerificacion.getTranD();
+            String estados = tranD.get(1).get(expresion.substring(0, 1));
+            System.out.println("m: " + tranD.get(1).get(expresion.substring(0, 1)));
+            for (int i = 2; i <= expresion.length(); i++) {
+                String letra = expresion.substring(i -1, i);
+                estados = tranD.get(Integer.parseInt(estados)).get(letra);
+            }
+            HashMap<Integer, String> estadoDInvertido = invertirHash(estadosD);
+            String conjuntoEstado = estadoDInvertido.get(Integer.parseInt(estados));
+            if (conjuntoEstado.contains(Integer.toString(posFinal))){
+                System.out.println("Verificado");
+            }else{
+                System.out.println("No verificado");
+            }
+        }
+    }//GEN-LAST:event_Btn_CheckActionPerformed
+
+    private HashMap<Integer, String> invertirHash(HashMap<String, Integer> hash) {
+        HashMap<Integer, String> hashInvertido = new HashMap<>();
+        hash.forEach((k, v) -> {
+            hashInvertido.put(v, k);
+        });
+        return hashInvertido;
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    public static String getCharForNumber(int i) {
+        return i > 0 && i < 27 ? String.valueOf((char) (i + 64)) : null;
+    }
+
+    public static int getPosForLetters(String letter, Object[] alphabet) {
+        for (int i = 0; i < alphabet.length; i++) {
+            if (letter.equals(alphabet[i])) {
+                return i + 1;
+            }
+        }
+        return 0;
+    }
+
+    private void inOrder(Nodo node) {
+        if (node != null) {
+            inOrder(node.hijo_izq);
+            //System.out.println(node.valor);
+            Nodos.add(node);
+            inOrder(node.hijo_der);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -217,10 +332,14 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_Check;
     private javax.swing.JButton Btn_Create;
     private javax.swing.JPanel Canvas;
+    private javax.swing.JTable JNodos;
+    private javax.swing.JTable JTranD;
     private javax.swing.JTextField Text;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField TextCheck;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
