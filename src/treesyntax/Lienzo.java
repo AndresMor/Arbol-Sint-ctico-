@@ -9,7 +9,7 @@ public class Lienzo extends Canvas {
     private Arbol objArbol;
     public static final int DIAMETRO = 30;
     public static final int RADIO = DIAMETRO / 2;
-    public static final int ANCHO = 50;
+    public static final int ANCHO = 40;
 
     public void setObjArbol(Arbol objArbol) {
         this.objArbol = objArbol;
@@ -20,8 +20,7 @@ public class Lienzo extends Canvas {
     public void paint(Graphics g) {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
         Interfaz faz = new Interfaz();
-
-        pintar(g, faz.getWidth() / 2, 20, objArbol.getRaiz());
+        pintar(g, faz.getWidth() -500, 20, objArbol.getRaiz());
     }
 
     private void pintar(Graphics g, int x, int y, Nodo n) {
