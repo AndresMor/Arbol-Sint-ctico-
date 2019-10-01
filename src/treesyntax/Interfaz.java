@@ -50,6 +50,7 @@ public class Interfaz extends javax.swing.JFrame {
         TextCheck = new javax.swing.JTextField();
         Btn_Check = new javax.swing.JButton();
         alfabeto = new javax.swing.JLabel();
+        verificado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,19 +110,23 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(Btn_Create)
-                                        .addGap(68, 68, 68))
-                                    .addComponent(Text, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                    .addComponent(TextCheck)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addComponent(Btn_Check))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(alfabeto))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(Btn_Create)
+                                            .addGap(68, 68, 68))
+                                        .addComponent(Text, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                        .addComponent(TextCheck))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(verificado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(alfabeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(16, 16, 16))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
@@ -142,8 +147,10 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(TextCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(Btn_Check)
-                        .addGap(59, 59, 59)
-                        .addComponent(alfabeto))
+                        .addGap(20, 20, 20)
+                        .addComponent(alfabeto)
+                        .addGap(18, 18, 18)
+                        .addComponent(verificado))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -241,21 +248,21 @@ public class Interfaz extends javax.swing.JFrame {
         // (a|b(c|d)*)+ac
         // (ab|cd)*d*c?
         if (TextCheck.getText().contains(" ") || TextCheck.getText().equals("")) {
-            System.out.println("No verificado");
+            verificado.setText("No verificado");
         } else {
             String expresion = TextCheck.getText().replace("&", "");
             boolean comprobado = verificarCadena(expresion);
             if (comprobado) {
-                System.out.println("Verificado");
+                verificado.setText("Verificado");
             } else {
-                System.out.println("No verificado");
+                verificado.setText("No verificado");
             }
         }
     }//GEN-LAST:event_Btn_CheckActionPerformed
 
     private boolean verificarCadena(String expresion) {
         if (arbolVerificacion == null && trandVerificacion == null) {
-            System.out.println("No puedes verificar algo que no pusiste :)");
+//            verificado.setText("No puedes verificar algo que no pusiste :)");
             return false;
         } else {
             Integer posFinal = arbolVerificacion.getPosicionFin();
@@ -360,5 +367,6 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel alfabeto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel verificado;
     // End of variables declaration//GEN-END:variables
 }
