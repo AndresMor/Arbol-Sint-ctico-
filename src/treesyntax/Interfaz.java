@@ -49,6 +49,7 @@ public class Interfaz extends javax.swing.JFrame {
         JTranD = new javax.swing.JTable();
         TextCheck = new javax.swing.JTextField();
         Btn_Check = new javax.swing.JButton();
+        alfabeto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,10 +118,13 @@ public class Interfaz extends javax.swing.JFrame {
                                     .addComponent(TextCheck)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
-                                .addComponent(Btn_Check))))
+                                .addComponent(Btn_Check))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(alfabeto))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -137,7 +141,9 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(TextCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Btn_Check))
+                        .addComponent(Btn_Check)
+                        .addGap(59, 59, 59)
+                        .addComponent(alfabeto))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -166,6 +172,7 @@ public class Interfaz extends javax.swing.JFrame {
         tree.preorden(raiz);
         arbolVerificacion = new Arbol();
         arbolVerificacion = tree;
+        alfabeto.setText("Alfabeto: " + tree.getAlfabeto());
         // Imprime alfabeto y siguientepos
         System.out.println(Arrays.toString(tree.getSiguientePos()));
         System.out.println((tree.getAlfabeto()));
@@ -184,7 +191,6 @@ public class Interfaz extends javax.swing.JFrame {
         trandVerificacion = tranD;
         System.out.println("Estados");
         tranD.getEstadosD().forEach((k, v) -> System.out.println("Key: " + k + ": Value: " + v));
-        //  System.out.println(tranD.getEstadosD().size());
         System.out.println("TranD");
         tranD.getTranD().forEach((k, v) -> System.out.println("Key: " + k + ": Value: " + v));
         DefaultTableModel TranDModel = new DefaultTableModel();
@@ -234,12 +240,16 @@ public class Interfaz extends javax.swing.JFrame {
     private void Btn_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CheckActionPerformed
         // (a|b(c|d)*)+ac
         // (ab|cd)*d*c?
-        String expresion = TextCheck.getText().replace("&", "");
-        boolean comprobado = verificarCadena(expresion);
-        if(comprobado){
-            System.out.println("Verificado");
-        }else{
+        if (TextCheck.getText().contains(" ") || TextCheck.getText().equals("")) {
             System.out.println("No verificado");
+        } else {
+            String expresion = TextCheck.getText().replace("&", "");
+            boolean comprobado = verificarCadena(expresion);
+            if (comprobado) {
+                System.out.println("Verificado");
+            } else {
+                System.out.println("No verificado");
+            }
         }
     }//GEN-LAST:event_Btn_CheckActionPerformed
 
@@ -271,7 +281,7 @@ public class Interfaz extends javax.swing.JFrame {
             String conjuntoEstado = estadoDInvertido.get(Integer.parseInt(estados));
             return conjuntoEstado.contains(Integer.toString(posFinal)) && bandera;
         }
-        
+
     }
 
     private HashMap<Integer, String> invertirHash(HashMap<String, Integer> hash) {
@@ -347,6 +357,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JTable JTranD;
     private javax.swing.JTextField Text;
     private javax.swing.JTextField TextCheck;
+    private javax.swing.JLabel alfabeto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
