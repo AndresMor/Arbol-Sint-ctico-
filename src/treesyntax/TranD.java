@@ -81,7 +81,12 @@ public class TranD {
                 if (union.isEmpty()) {
                     continue;
                 }
-
+                // (ab|cd)*d*c?
+                /*
+                this.estadosD.forEach((k,v)->{
+                    System.out.println("k: " + k + "\nv: " + v);
+                });
+                 */
                 if (!this.estadosD.containsKey(union.toString())) {
                     estado++;
                     this.estadosD.put(union.toString(), estado);
@@ -89,18 +94,17 @@ public class TranD {
                     this.tranD.put(this.estadosD.get(T.toString()), contenido);
                     U.add(union);
                 } else {
-                    
+
                     contenido.put(letra, Integer.toString(this.estadosD.get(union.toString())));
                     this.tranD.put(this.estadosD.get(T.toString()), contenido);
                 }
             }
             Set<Integer> removerPrimero = U.stream().findFirst().get();
             U.remove(removerPrimero);
-
+            if (!this.tranD.containsKey(estado)) {
+                this.tranD.put(estado, new HashMap<>());
+            };
         }
-        if (!this.tranD.containsKey(estado)) {
-            this.tranD.put(estado, new HashMap<>());
-        };
     }
 
 }

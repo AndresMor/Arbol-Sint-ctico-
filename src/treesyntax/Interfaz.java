@@ -60,7 +60,7 @@ public class Interfaz extends javax.swing.JFrame {
         );
         CanvasLayout.setVerticalGroup(
             CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 367, Short.MAX_VALUE)
         );
 
         Btn_Create.setText("Create");
@@ -102,27 +102,28 @@ public class Interfaz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(Btn_Create)
-                                .addGap(68, 68, 68))
-                            .addComponent(Text, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(TextCheck)))
+                        .addGap(14, 14, 14)
+                        .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(Btn_Create)
+                                        .addGap(68, 68, 68))
+                                    .addComponent(Text, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                                    .addComponent(TextCheck)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(Btn_Check))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(Btn_Check)))
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,11 +141,11 @@ public class Interfaz extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -152,6 +153,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void Btn_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CreateActionPerformed
         // TODO add your handling code here:
+        // (a|b(c|d)*)+ac
         super.paint(Canvas.getGraphics());
         Arbol tree = new Arbol();
         String RegularEx = RegEx.infixToPostfix("(" + Text.getText() + ")#");
@@ -167,6 +169,10 @@ public class Interfaz extends javax.swing.JFrame {
         // Imprime alfabeto y siguientepos
         System.out.println(Arrays.toString(tree.getSiguientePos()));
         System.out.println((tree.getAlfabeto()));
+        Lienzo objLienzo = new Lienzo();
+        objLienzo.setObjArbol(tree);
+        objLienzo.paint(Canvas.getGraphics());
+        Canvas.add(objLienzo);
         // Obtiene posicion final para verificar que estados son de finalización,
         // esta en clase Arbol
         System.out.println("PosFin: " + tree.getPosicionFin());
@@ -181,7 +187,6 @@ public class Interfaz extends javax.swing.JFrame {
         //  System.out.println(tranD.getEstadosD().size());
         System.out.println("TranD");
         tranD.getTranD().forEach((k, v) -> System.out.println("Key: " + k + ": Value: " + v));
-
         DefaultTableModel TranDModel = new DefaultTableModel();
         TranDModel.addColumn("          ");
         TranDModel.setRowCount(tranD.getTranD().size());
@@ -223,48 +228,51 @@ public class Interfaz extends javax.swing.JFrame {
                 j++;
             }
         }
-
         JNodos.setModel(NodeModel);
-
-        Lienzo objLienzo = new Lienzo();
-        objLienzo.setObjArbol(tree);
-        objLienzo.paint(Canvas.getGraphics());
-        Canvas.add(objLienzo);
     }//GEN-LAST:event_Btn_CreateActionPerformed
 
     private void Btn_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CheckActionPerformed
-        // TODO add your handling code here:
-//        String check = TextCheck.getText();
-//        HashMap<Integer, HashMap<String, String>> map = tranD.getTranD();
-//        int i = 0;
-//        for (Map.Entry<Integer, HashMap<String, String>> entry : map.entrySet()) {
-//            HashMap<String, String> map2 = entry.getValue();
-//            for (Map.Entry<String, String> entry2 : map2.entrySet()) {
-//                System.out.println(entry2.getKey() + " = " + entry2.getValue());
-//            }
-//        }
-        String expresion = TextCheck.getText();
+        // (a|b(c|d)*)+ac
+        // (ab|cd)*d*c?
+        String expresion = TextCheck.getText().replace("&", "");
+        boolean comprobado = verificarCadena(expresion);
+        if(comprobado){
+            System.out.println("Verificado");
+        }else{
+            System.out.println("No verificado");
+        }
+    }//GEN-LAST:event_Btn_CheckActionPerformed
+
+    private boolean verificarCadena(String expresion) {
         if (arbolVerificacion == null && trandVerificacion == null) {
             System.out.println("No puedes verificar algo que no pusiste :)");
+            return false;
         } else {
             Integer posFinal = arbolVerificacion.getPosicionFin();
             HashMap<String, Integer> estadosD = trandVerificacion.getEstadosD();
             HashMap<Integer, HashMap<String, String>> tranD = trandVerificacion.getTranD();
-            String estados = tranD.get(1).get(expresion.substring(0, 1));
-            System.out.println("m: " + tranD.get(1).get(expresion.substring(0, 1)));
-            for (int i = 2; i <= expresion.length(); i++) {
-                String letra = expresion.substring(i -1, i);
-                estados = tranD.get(Integer.parseInt(estados)).get(letra);
+            String estados = "1";
+            boolean bandera = true;
+            if (expresion.length() > 0) {
+                estados = tranD.get(1).get(expresion.substring(0, 1));
+                int i = 2;
+                while (i <= expresion.length()) {
+                    String letra = expresion.substring(i - 1, i);
+                    if (tranD.get(Integer.parseInt(estados)).get(letra) != null) {
+                        estados = tranD.get(Integer.parseInt(estados)).get(letra);
+                    } else {
+                        bandera = false;
+                        break;
+                    }
+                    i++;
+                }
             }
             HashMap<Integer, String> estadoDInvertido = invertirHash(estadosD);
             String conjuntoEstado = estadoDInvertido.get(Integer.parseInt(estados));
-            if (conjuntoEstado.contains(Integer.toString(posFinal))){
-                System.out.println("Verificado");
-            }else{
-                System.out.println("No verificado");
-            }
+            return conjuntoEstado.contains(Integer.toString(posFinal)) && bandera;
         }
-    }//GEN-LAST:event_Btn_CheckActionPerformed
+        
+    }
 
     private HashMap<Integer, String> invertirHash(HashMap<String, Integer> hash) {
         HashMap<Integer, String> hashInvertido = new HashMap<>();

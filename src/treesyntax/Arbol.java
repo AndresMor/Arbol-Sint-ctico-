@@ -213,13 +213,6 @@ public class Arbol {
                     this.siguientePos[(Integer) ultimaPosN[i] - 1].addAll(primeraPosN);
                 }
                 break;
-            /*
-            case '?':
-                for (int i = 0; i < ultimaPosN.length; i++) {
-                    this.siguientePos[(Integer) ultimaPosN[i] - 1].addAll(primeraPosN);
-                }
-                break;
-             */
         }
     }
 
@@ -277,6 +270,14 @@ public class Arbol {
                 }
                 if (postfix[i] == '+') {
                     t.anulable = t.getHijo_izq().anulable;
+                }
+                Nodo hijoIzquierdo = t.getHijo_izq();
+                Nodo hijoDerecho = t.getHijo_der();
+                if (postfix[i] == '.') {
+                    t.anulable = hijoIzquierdo.anulable && hijoDerecho.anulable;
+                }
+                if (postfix[i] == '|') {
+                    t.anulable = hijoIzquierdo.anulable || hijoDerecho.anulable;
                 }
                 hacerPrimeraPos(t, true);
                 hacerUltimaPos(t, true);
