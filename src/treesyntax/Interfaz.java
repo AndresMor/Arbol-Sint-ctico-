@@ -65,7 +65,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGap(0, 367, Short.MAX_VALUE)
         );
 
-        Btn_Create.setText("Create");
+        Btn_Create.setText("Crear");
         Btn_Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_CreateActionPerformed(evt);
@@ -92,7 +92,7 @@ public class Interfaz extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(JTranD);
 
-        Btn_Check.setText("Check");
+        Btn_Check.setText("Verificar");
         Btn_Check.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_CheckActionPerformed(evt);
@@ -110,15 +110,9 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(Btn_Check))
-                            .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(Btn_Create)
-                                            .addGap(68, 68, 68))
                                         .addComponent(Text, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                                         .addComponent(TextCheck))
                                     .addGroup(layout.createSequentialGroup()
@@ -126,7 +120,13 @@ public class Interfaz extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(verificado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(alfabeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(16, 16, 16))))))
+                                        .addGap(16, 16, 16))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(Btn_Check))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addComponent(Btn_Create, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
