@@ -40,129 +40,190 @@ public class Interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Canvas = new javax.swing.JPanel();
-        Text = new javax.swing.JTextField();
-        Btn_Create = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        JNodos = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        JTranD = new javax.swing.JTable();
-        TextCheck = new javax.swing.JTextField();
-        Btn_Check = new javax.swing.JButton();
+        materialShadow1 = new elevacion.MaterialShadow();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        Text = new jcmouse.materialdesign.TextInput();
+        TextCheck = new jcmouse.materialdesign.TextInput();
+        Btn_Create = new rojerusan.RSMaterialButton();
+        Btn_Check = new rojerusan.RSMaterialButton();
         alfabeto = new javax.swing.JLabel();
         verificado = new javax.swing.JLabel();
+        Canvas = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTranD = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JNodos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout CanvasLayout = new javax.swing.GroupLayout(Canvas);
-        Canvas.setLayout(CanvasLayout);
-        CanvasLayout.setHorizontalGroup(
-            CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 933, Short.MAX_VALUE)
-        );
-        CanvasLayout.setVerticalGroup(
-            CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        Btn_Create.setText("Create");
+        jPanel2.setBackground(new java.awt.Color(130, 177, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Regex to DFA");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 12, 197, -1));
+
+        jPanel3.setBackground(new java.awt.Color(69, 90, 100));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Text.setForeground(new java.awt.Color(255, 255, 255));
+        Text.setColorPrimary(new java.awt.Color(255, 255, 255));
+        Text.setHint("Crear");
+        jPanel3.add(Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 33, -1, -1));
+
+        TextCheck.setForeground(new java.awt.Color(255, 255, 255));
+        TextCheck.setColorPrimary(new java.awt.Color(255, 255, 255));
+        TextCheck.setHint("Verificar");
+        jPanel3.add(TextCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 160, -1, -1));
+
+        Btn_Create.setBackground(new java.awt.Color(250, 250, 250));
+        Btn_Create.setText("Crear");
+        Btn_Create.setFont(new java.awt.Font("Roboto Bold", 1, 12)); // NOI18N
         Btn_Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Btn_CreateActionPerformed(evt);
             }
         });
+        jPanel3.add(Btn_Create, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 93, 168, 43));
+
+        Btn_Check.setBackground(new java.awt.Color(250, 250, 250));
+        Btn_Check.setText("Verificar");
+        Btn_Check.setFont(new java.awt.Font("Roboto Bold", 1, 12)); // NOI18N
+        Btn_Check.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_CheckActionPerformed(evt);
+            }
+        });
+        jPanel3.add(Btn_Check, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 168, -1));
+
+        alfabeto.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        alfabeto.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(alfabeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 298, -1, -1));
+
+        verificado.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        verificado.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(verificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 325, -1, -1));
+
+        Canvas.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout CanvasLayout = new javax.swing.GroupLayout(Canvas);
+        Canvas.setLayout(CanvasLayout);
+        CanvasLayout.setHorizontalGroup(
+            CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        CanvasLayout.setVerticalGroup(
+            CanvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 333, Short.MAX_VALUE)
+        );
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        JTranD.setAutoCreateRowSorter(true);
+        JTranD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        JTranD.setGridColor(new java.awt.Color(255, 255, 255));
+        JTranD.setIntercellSpacing(new java.awt.Dimension(5, 5));
+        JTranD.setSelectionBackground(new java.awt.Color(130, 177, 255));
+        JTranD.setShowHorizontalLines(false);
+        JTranD.setShowVerticalLines(false);
+        JTranD.getTableHeader().setResizingAllowed(false);
+        JTranD.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(JTranD);
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
         JNodos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nodo", "PPOS", "UPOS", "SGPOS"
+                "Nodo", "PPOS", "UPOS", "SPOS"
             }
         ));
-        jScrollPane1.setViewportView(JNodos);
+        JNodos.setGridColor(new java.awt.Color(255, 255, 255));
+        JNodos.setIntercellSpacing(new java.awt.Dimension(5, 5));
+        JNodos.setSelectionBackground(new java.awt.Color(130, 177, 255));
+        JNodos.setShowHorizontalLines(false);
+        JNodos.setShowVerticalLines(false);
+        JNodos.getTableHeader().setResizingAllowed(false);
+        JNodos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(JNodos);
 
-        JTranD.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane2.setViewportView(JTranD);
-
-        Btn_Check.setText("Check");
-        Btn_Check.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Btn_CheckActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(Canvas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(Btn_Check))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(Btn_Create)
-                                            .addGap(68, 68, 68))
-                                        .addComponent(Text, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                                        .addComponent(TextCheck))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(verificado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(alfabeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(16, 16, 16))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Btn_Create)
-                        .addGap(17, 17, 17)
-                        .addComponent(TextCheck, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Btn_Check)
-                        .addGap(20, 20, 20)
-                        .addComponent(alfabeto)
-                        .addGap(18, 18, 18)
-                        .addComponent(verificado))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Canvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Btn_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CheckActionPerformed
+        // (a|b(c|d)*)+ac
+        // (ab|cd)*d*c?
+        if (TextCheck.getText().contains(" ") || TextCheck.getText().equals("")) {
+            verificado.setText("No verificado");
+        } else {
+            String expresion = TextCheck.getText().replace("&", "");
+            boolean comprobado = verificarCadena(expresion);
+            if (comprobado) {
+                verificado.setText("Verificado");
+            } else {
+                verificado.setText("No verificado");
+            }
+        }
+    }//GEN-LAST:event_Btn_CheckActionPerformed
 
     private void Btn_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CreateActionPerformed
         // TODO add your handling code here:
@@ -244,22 +305,6 @@ public class Interfaz extends javax.swing.JFrame {
         JNodos.setModel(NodeModel);
     }//GEN-LAST:event_Btn_CreateActionPerformed
 
-    private void Btn_CheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CheckActionPerformed
-        // (a|b(c|d)*)+ac
-        // (ab|cd)*d*c?
-        if (TextCheck.getText().contains(" ") || TextCheck.getText().equals("")) {
-            verificado.setText("No verificado");
-        } else {
-            String expresion = TextCheck.getText().replace("&", "");
-            boolean comprobado = verificarCadena(expresion);
-            if (comprobado) {
-                verificado.setText("Verificado");
-            } else {
-                verificado.setText("No verificado");
-            }
-        }
-    }//GEN-LAST:event_Btn_CheckActionPerformed
-
     private boolean verificarCadena(String expresion) {
         if (arbolVerificacion == null && trandVerificacion == null) {
 //            verificado.setText("No puedes verificar algo que no pusiste :)");
@@ -275,11 +320,15 @@ public class Interfaz extends javax.swing.JFrame {
                 int i = 2;
                 while (i <= expresion.length()) {
                     String letra = expresion.substring(i - 1, i);
-                    if (tranD.get(Integer.parseInt(estados)).get(letra) != null) {
-                        estados = tranD.get(Integer.parseInt(estados)).get(letra);
-                    } else {
-                        bandera = false;
-                        break;
+                    try {
+                        if (tranD.get(Integer.parseInt(estados)).get(letra) != null) {
+                            estados = tranD.get(Integer.parseInt(estados)).get(letra);
+                        } else {
+                            bandera = false;
+                            break;
+                        }
+                    } catch (NumberFormatException | NullPointerException nfe) {
+                        return false;
                     }
                     i++;
                 }
@@ -357,16 +406,21 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Btn_Check;
-    private javax.swing.JButton Btn_Create;
+    private rojerusan.RSMaterialButton Btn_Check;
+    private rojerusan.RSMaterialButton Btn_Create;
     private javax.swing.JPanel Canvas;
     private javax.swing.JTable JNodos;
     private javax.swing.JTable JTranD;
-    private javax.swing.JTextField Text;
-    private javax.swing.JTextField TextCheck;
+    private jcmouse.materialdesign.TextInput Text;
+    private jcmouse.materialdesign.TextInput TextCheck;
     private javax.swing.JLabel alfabeto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private elevacion.MaterialShadow materialShadow1;
     private javax.swing.JLabel verificado;
     // End of variables declaration//GEN-END:variables
 }
